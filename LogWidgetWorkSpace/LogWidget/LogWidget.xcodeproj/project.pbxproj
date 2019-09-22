@@ -1,0 +1,572 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD0602672332024900FACC1E /* NSFileManager+Path.h in Headers */ = {isa = PBXBuildFile; fileRef = AD0602652332024900FACC1E /* NSFileManager+Path.h */; };
+		AD0602682332024900FACC1E /* NSFileManager+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0602662332024900FACC1E /* NSFileManager+Path.m */; };
+		AD06026C233203F600FACC1E /* LogWidgetFileManager+Directory.h in Headers */ = {isa = PBXBuildFile; fileRef = AD06026A233203F600FACC1E /* LogWidgetFileManager+Directory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD06026D233203F600FACC1E /* LogWidgetFileManager+Directory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD06026B233203F600FACC1E /* LogWidgetFileManager+Directory.m */; };
+		FA6D6771233136FF00E6BABF /* LogWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6D6767233136FF00E6BABF /* LogWidget.framework */; };
+		FA6D6776233136FF00E6BABF /* LogWidgetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D6775233136FF00E6BABF /* LogWidgetTests.m */; };
+		FA6D6778233136FF00E6BABF /* LogWidget.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D676A233136FF00E6BABF /* LogWidget.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA6D67862331377D00E6BABF /* LogWidgetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D67842331377D00E6BABF /* LogWidgetManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA6D67872331377D00E6BABF /* LogWidgetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D67852331377D00E6BABF /* LogWidgetManager.m */; };
+		FA6D678C2331387E00E6BABF /* LogWidgetFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D678A2331387E00E6BABF /* LogWidgetFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA6D678D2331387E00E6BABF /* LogWidgetFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D678B2331387E00E6BABF /* LogWidgetFileManager.m */; };
+		FA6D679F2335257A00E6BABF /* LogWidgetFileManager+File.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D679D2335257A00E6BABF /* LogWidgetFileManager+File.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA6D67A02335257A00E6BABF /* LogWidgetFileManager+File.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D679E2335257A00E6BABF /* LogWidgetFileManager+File.m */; };
+		FA6D67A22335324600E6BABF /* PublicEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D67A1233529B500E6BABF /* PublicEnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA6D67A5233549FC00E6BABF /* LogWidgetGloableTool.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D67A3233549FC00E6BABF /* LogWidgetGloableTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA6D67A6233549FC00E6BABF /* LogWidgetGloableTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D67A4233549FC00E6BABF /* LogWidgetGloableTool.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA6D6772233136FF00E6BABF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA6D675E233136FF00E6BABF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA6D6766233136FF00E6BABF;
+			remoteInfo = LogWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AD0602652332024900FACC1E /* NSFileManager+Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Path.h"; sourceTree = "<group>"; };
+		AD0602662332024900FACC1E /* NSFileManager+Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Path.m"; sourceTree = "<group>"; };
+		AD0602692332030100FACC1E /* LogWidget.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWidget.pch; sourceTree = "<group>"; };
+		AD06026A233203F600FACC1E /* LogWidgetFileManager+Directory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LogWidgetFileManager+Directory.h"; sourceTree = "<group>"; };
+		AD06026B233203F600FACC1E /* LogWidgetFileManager+Directory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LogWidgetFileManager+Directory.m"; sourceTree = "<group>"; };
+		FA6D6767233136FF00E6BABF /* LogWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LogWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA6D676A233136FF00E6BABF /* LogWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWidget.h; sourceTree = "<group>"; };
+		FA6D676B233136FF00E6BABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA6D6770233136FF00E6BABF /* LogWidgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogWidgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA6D6775233136FF00E6BABF /* LogWidgetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogWidgetTests.m; sourceTree = "<group>"; };
+		FA6D6777233136FF00E6BABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA6D67842331377D00E6BABF /* LogWidgetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWidgetManager.h; sourceTree = "<group>"; };
+		FA6D67852331377D00E6BABF /* LogWidgetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogWidgetManager.m; sourceTree = "<group>"; };
+		FA6D678A2331387E00E6BABF /* LogWidgetFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWidgetFileManager.h; sourceTree = "<group>"; };
+		FA6D678B2331387E00E6BABF /* LogWidgetFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogWidgetFileManager.m; sourceTree = "<group>"; };
+		FA6D679D2335257A00E6BABF /* LogWidgetFileManager+File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LogWidgetFileManager+File.h"; sourceTree = "<group>"; };
+		FA6D679E2335257A00E6BABF /* LogWidgetFileManager+File.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LogWidgetFileManager+File.m"; sourceTree = "<group>"; };
+		FA6D67A1233529B500E6BABF /* PublicEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicEnum.h; sourceTree = "<group>"; };
+		FA6D67A3233549FC00E6BABF /* LogWidgetGloableTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWidgetGloableTool.h; sourceTree = "<group>"; };
+		FA6D67A4233549FC00E6BABF /* LogWidgetGloableTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogWidgetGloableTool.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA6D6764233136FF00E6BABF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA6D676D233136FF00E6BABF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA6D6771233136FF00E6BABF /* LogWidget.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AD060264233201FC00FACC1E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				AD0602652332024900FACC1E /* NSFileManager+Path.h */,
+				AD0602662332024900FACC1E /* NSFileManager+Path.m */,
+				AD06026A233203F600FACC1E /* LogWidgetFileManager+Directory.h */,
+				AD06026B233203F600FACC1E /* LogWidgetFileManager+Directory.m */,
+				FA6D679D2335257A00E6BABF /* LogWidgetFileManager+File.h */,
+				FA6D679E2335257A00E6BABF /* LogWidgetFileManager+File.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		AD06026E2332067B00FACC1E /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
+		FA6D675D233136FF00E6BABF = {
+			isa = PBXGroup;
+			children = (
+				FA6D6769233136FF00E6BABF /* LogWidget */,
+				FA6D6774233136FF00E6BABF /* LogWidgetTests */,
+				FA6D6768233136FF00E6BABF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FA6D6768233136FF00E6BABF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D6767233136FF00E6BABF /* LogWidget.framework */,
+				FA6D6770233136FF00E6BABF /* LogWidgetTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA6D6769233136FF00E6BABF /* LogWidget */ = {
+			isa = PBXGroup;
+			children = (
+				AD06026E2332067B00FACC1E /* Extention */,
+				AD060264233201FC00FACC1E /* Category */,
+				FA6D678F23314C3600E6BABF /* Tools */,
+				FA6D678E23313B6F00E6BABF /* Configuartion */,
+				FA6D67892331386700E6BABF /* File */,
+				FA6D67882331378600E6BABF /* Manager */,
+				FA6D676A233136FF00E6BABF /* LogWidget.h */,
+				AD0602692332030100FACC1E /* LogWidget.pch */,
+				FA6D676B233136FF00E6BABF /* Info.plist */,
+			);
+			path = LogWidget;
+			sourceTree = "<group>";
+		};
+		FA6D6774233136FF00E6BABF /* LogWidgetTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D6775233136FF00E6BABF /* LogWidgetTests.m */,
+				FA6D6777233136FF00E6BABF /* Info.plist */,
+			);
+			path = LogWidgetTests;
+			sourceTree = "<group>";
+		};
+		FA6D67882331378600E6BABF /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D67842331377D00E6BABF /* LogWidgetManager.h */,
+				FA6D67852331377D00E6BABF /* LogWidgetManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		FA6D67892331386700E6BABF /* File */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D678A2331387E00E6BABF /* LogWidgetFileManager.h */,
+				FA6D678B2331387E00E6BABF /* LogWidgetFileManager.m */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		FA6D678E23313B6F00E6BABF /* Configuartion */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D67A1233529B500E6BABF /* PublicEnum.h */,
+			);
+			path = Configuartion;
+			sourceTree = "<group>";
+		};
+		FA6D678F23314C3600E6BABF /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				FA6D67A3233549FC00E6BABF /* LogWidgetGloableTool.h */,
+				FA6D67A4233549FC00E6BABF /* LogWidgetGloableTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FA6D6762233136FF00E6BABF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA6D67A5233549FC00E6BABF /* LogWidgetGloableTool.h in Headers */,
+				FA6D67862331377D00E6BABF /* LogWidgetManager.h in Headers */,
+				FA6D678C2331387E00E6BABF /* LogWidgetFileManager.h in Headers */,
+				FA6D679F2335257A00E6BABF /* LogWidgetFileManager+File.h in Headers */,
+				AD06026C233203F600FACC1E /* LogWidgetFileManager+Directory.h in Headers */,
+				FA6D67A22335324600E6BABF /* PublicEnum.h in Headers */,
+				AD0602672332024900FACC1E /* NSFileManager+Path.h in Headers */,
+				FA6D6778233136FF00E6BABF /* LogWidget.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FA6D6766233136FF00E6BABF /* LogWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA6D677B233136FF00E6BABF /* Build configuration list for PBXNativeTarget "LogWidget" */;
+			buildPhases = (
+				FA6D6762233136FF00E6BABF /* Headers */,
+				FA6D6763233136FF00E6BABF /* Sources */,
+				FA6D6764233136FF00E6BABF /* Frameworks */,
+				FA6D6765233136FF00E6BABF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogWidget;
+			productName = LogWidget;
+			productReference = FA6D6767233136FF00E6BABF /* LogWidget.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FA6D676F233136FF00E6BABF /* LogWidgetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA6D677E233136FF00E6BABF /* Build configuration list for PBXNativeTarget "LogWidgetTests" */;
+			buildPhases = (
+				FA6D676C233136FF00E6BABF /* Sources */,
+				FA6D676D233136FF00E6BABF /* Frameworks */,
+				FA6D676E233136FF00E6BABF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA6D6773233136FF00E6BABF /* PBXTargetDependency */,
+			);
+			name = LogWidgetTests;
+			productName = LogWidgetTests;
+			productReference = FA6D6770233136FF00E6BABF /* LogWidgetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA6D675E233136FF00E6BABF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "李晋";
+				TargetAttributes = {
+					FA6D6766233136FF00E6BABF = {
+						CreatedOnToolsVersion = 10.3;
+					};
+					FA6D676F233136FF00E6BABF = {
+						CreatedOnToolsVersion = 10.3;
+					};
+				};
+			};
+			buildConfigurationList = FA6D6761233136FF00E6BABF /* Build configuration list for PBXProject "LogWidget" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FA6D675D233136FF00E6BABF;
+			productRefGroup = FA6D6768233136FF00E6BABF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA6D6766233136FF00E6BABF /* LogWidget */,
+				FA6D676F233136FF00E6BABF /* LogWidgetTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FA6D6765233136FF00E6BABF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA6D676E233136FF00E6BABF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA6D6763233136FF00E6BABF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD06026D233203F600FACC1E /* LogWidgetFileManager+Directory.m in Sources */,
+				FA6D67A6233549FC00E6BABF /* LogWidgetGloableTool.m in Sources */,
+				FA6D678D2331387E00E6BABF /* LogWidgetFileManager.m in Sources */,
+				FA6D67A02335257A00E6BABF /* LogWidgetFileManager+File.m in Sources */,
+				FA6D67872331377D00E6BABF /* LogWidgetManager.m in Sources */,
+				AD0602682332024900FACC1E /* NSFileManager+Path.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA6D676C233136FF00E6BABF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA6D6776233136FF00E6BABF /* LogWidgetTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA6D6773233136FF00E6BABF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA6D6766233136FF00E6BABF /* LogWidget */;
+			targetProxy = FA6D6772233136FF00E6BABF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FA6D6779233136FF00E6BABF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FA6D677A233136FF00E6BABF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FA6D677C233136FF00E6BABF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 34RJ2UKX9U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LogWidget/LogWidget.pch";
+				INFOPLIST_FILE = LogWidget/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lijin.developer.LogWidget;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA6D677D233136FF00E6BABF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 34RJ2UKX9U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LogWidget/LogWidget.pch";
+				INFOPLIST_FILE = LogWidget/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lijin.developer.LogWidget;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FA6D677F233136FF00E6BABF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34RJ2UKX9U;
+				INFOPLIST_FILE = LogWidgetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lijin.developer.LogWidgetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA6D6780233136FF00E6BABF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34RJ2UKX9U;
+				INFOPLIST_FILE = LogWidgetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lijin.developer.LogWidgetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA6D6761233136FF00E6BABF /* Build configuration list for PBXProject "LogWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA6D6779233136FF00E6BABF /* Debug */,
+				FA6D677A233136FF00E6BABF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA6D677B233136FF00E6BABF /* Build configuration list for PBXNativeTarget "LogWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA6D677C233136FF00E6BABF /* Debug */,
+				FA6D677D233136FF00E6BABF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA6D677E233136FF00E6BABF /* Build configuration list for PBXNativeTarget "LogWidgetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA6D677F233136FF00E6BABF /* Debug */,
+				FA6D6780233136FF00E6BABF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA6D675E233136FF00E6BABF /* Project object */;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:CppProject/CppProject.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:LogWidget/LogWidget.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DemoApplication/DemoApplication.xcodeproj">
+   </FileRef>
+</Workspace>
