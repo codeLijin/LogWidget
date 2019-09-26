@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param relativePath 相对路径
  @param inPath 根目录
  @param overwrite 是否重写
+ @param baseData 初始数据
  @param error z错误信息
  @return 创建结果
  */
@@ -35,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
       relativePath:(nonnull NSString *)relativePath
             inPath:(DOCUMENT_PATH)inPath
          overwrite:(BOOL)overwrite
+          baseData:(NSData *)baseData
              error:(NSError *__autoreleasing *)error;
 @end
 

@@ -54,7 +54,6 @@
     return [fullPath stringByDeletingLastPathComponent];
 }
 
-
 /**
  创建文件
 
@@ -62,6 +61,7 @@
  @param relativePath 相对路径
  @param inPath 根目录
  @param overwrite 是否重写
+ @param baseData 初始数据
  @param error z错误信息
  @return 创建结果
  */
@@ -69,6 +69,7 @@
       relativePath:(nonnull NSString *)relativePath
             inPath:(DOCUMENT_PATH)inPath
          overwrite:(BOOL)overwrite
+          baseData:(NSData *)baseData
              error:(NSError *__autoreleasing *)error {
     // 如果文件夹路径不存在，那么先创建文件夹
     NSString *fullPath = [self getFullPathBy:inPath relativePath:relativePath];
@@ -95,6 +96,6 @@
             return true;
         }
     }
-    return [self.fileManager createFileAtPath:file_full_path contents:nil attributes:nil];
+    return [self.fileManager createFileAtPath:file_full_path contents:baseData attributes:nil];
 }
 @end

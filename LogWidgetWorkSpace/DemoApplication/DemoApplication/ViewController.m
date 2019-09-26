@@ -27,7 +27,8 @@
 //                      dateFormat:@"yyyy-MM-dd HH:mm:ss"];
 //    NSLog(@"%@", time);
     
-    BOOL result = [manager.fileManager createFile:@"file.txt" relativePath:@"/ios/b/c" inPath:DOCUMENT_PATH_DOCUMENT overwrite:YES error:nil];
+    NSString *str = @"d奇奇翁群翁群翁无群二群无无群无群二无群二群翁群翁群无群二无";
+    BOOL result = [manager.fileManager createFile:@"file.txt" relativePath:@"/ios/b/c" inPath:DOCUMENT_PATH_DOCUMENT overwrite:true baseData:[str utf8Data] error:nil];
     NSLog(@"result: %d", result);
 }
 

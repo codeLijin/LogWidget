@@ -22,3 +22,4 @@ FOUNDATION_EXPORT const unsigned char LogWidgetVersionString[];
 #import <LogWidget/LogWidgetFileManager+Directory.h>
 #import <LogWidget/LogWidgetFileManager+File.h>
 #import <LogWidget/LogWidgetGloableTool.h>
+#import <LogWidget/NSString+YNCoding.h>

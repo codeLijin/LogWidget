@@ -23,6 +23,8 @@
 		FA6D67A22335324600E6BABF /* PublicEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D67A1233529B500E6BABF /* PublicEnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA6D67A5233549FC00E6BABF /* LogWidgetGloableTool.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D67A3233549FC00E6BABF /* LogWidgetGloableTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA6D67A6233549FC00E6BABF /* LogWidgetGloableTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D67A4233549FC00E6BABF /* LogWidgetGloableTool.m */; };
+		FAF51194233D03F30007FF74 /* NSString+YNCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = FAF51192233D03F30007FF74 /* NSString+YNCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAF51195233D03F30007FF74 /* NSString+YNCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF51193233D03F30007FF74 /* NSString+YNCoding.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		FA6D67A1233529B500E6BABF /* PublicEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicEnum.h; sourceTree = "<group>"; };
 		FA6D67A3233549FC00E6BABF /* LogWidgetGloableTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWidgetGloableTool.h; sourceTree = "<group>"; };
 		FA6D67A4233549FC00E6BABF /* LogWidgetGloableTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogWidgetGloableTool.m; sourceTree = "<group>"; };
+		FAF51192233D03F30007FF74 /* NSString+YNCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+YNCoding.h"; sourceTree = "<group>"; };
+		FAF51193233D03F30007FF74 /* NSString+YNCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+YNCoding.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				AD06026B233203F600FACC1E /* LogWidgetFileManager+Directory.m */,
 				FA6D679D2335257A00E6BABF /* LogWidgetFileManager+File.h */,
 				FA6D679E2335257A00E6BABF /* LogWidgetFileManager+File.m */,
+				FAF51192233D03F30007FF74 /* NSString+YNCoding.h */,
+				FAF51193233D03F30007FF74 /* NSString+YNCoding.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -182,6 +188,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF51194233D03F30007FF74 /* NSString+YNCoding.h in Headers */,
 				FA6D67A5233549FC00E6BABF /* LogWidgetGloableTool.h in Headers */,
 				FA6D67862331377D00E6BABF /* LogWidgetManager.h in Headers */,
 				FA6D678C2331387E00E6BABF /* LogWidgetFileManager.h in Headers */,
@@ -293,6 +300,7 @@
 				FA6D67A6233549FC00E6BABF /* LogWidgetGloableTool.m in Sources */,
 				FA6D678D2331387E00E6BABF /* LogWidgetFileManager.m in Sources */,
 				FA6D67A02335257A00E6BABF /* LogWidgetFileManager+File.m in Sources */,
+				FAF51195233D03F30007FF74 /* NSString+YNCoding.m in Sources */,
 				FA6D67872331377D00E6BABF /* LogWidgetManager.m in Sources */,
 				AD0602682332024900FACC1E /* NSFileManager+Path.m in Sources */,
 			);
