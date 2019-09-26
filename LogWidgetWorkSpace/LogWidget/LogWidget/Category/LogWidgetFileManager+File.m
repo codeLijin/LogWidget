@@ -98,4 +98,47 @@
     }
     return [self.fileManager createFileAtPath:file_full_path contents:baseData attributes:nil];
 }
+
+- (BOOL)writeFileAtFullPath:(NSString *)fullPath content:(NSObject *)content error:(NSError *__autoreleasing *)error {
+    //判断文件内容是否为空
+    if (!content) {
+        [NSException raise:@"非法的文件内容" format:@"文件内容不能为nil"];
+        return NO;
+    }
+    //判断文件(夹)是否存在
+    BOOL isDirectory;
+    BOOL isExists = [self fileExistsAtPath:fullPath isDirectory:&isDirectory];
+    if (isExists && !isDirectory) {
+        if ([content isKindOfClass:[NSMutableArray class]]) {//文件内容为可变数组
+            [(NSMutableArray *)content writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[NSArray class]]) {//文件内容为不可变数组
+            [(NSArray *)content writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[NSMutableData class]]) {//文件内容为可变NSMutableData
+            [(NSMutableData *)content writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[NSData class]]) {//文件内容为NSData
+            [(NSData *)content writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[NSMutableDictionary class]]) {//文件内容为可变字典
+            [(NSMutableDictionary *)content writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[NSDictionary class]]) {//文件内容为不可变字典
+            [(NSDictionary *)content writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[NSJSONSerialization class]]) {//文件内容为JSON类型
+            [(NSDictionary *)content writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[NSMutableString class]]) {//文件内容为可变字符串
+            [[((NSString *)content) dataUsingEncoding:NSUTF8StringEncoding] writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[NSString class]]) {//文件内容为不可变字符串
+            [[((NSString *)content) dataUsingEncoding:NSUTF8StringEncoding] writeToFile:fullPath atomically:YES];
+        }else if ([content isKindOfClass:[UIImage class]]) {//文件内容为图片
+            [UIImagePNGRepresentation((UIImage *)content) writeToFile:fullPath atomically:YES];
+        }else if ([content conformsToProtocol:@protocol(NSCoding)]) {//文件归档
+            [NSKeyedArchiver archiveRootObject:content toFile:fullPath];
+        }else {
+            [NSException raise:@"非法的文件内容" format:@"文件类型%@异常，无法被处理。", NSStringFromClass([content class])];
+            return NO;
+        }
+    }else {
+        return NO;
+    }
+    return YES;
+}
+
 @end

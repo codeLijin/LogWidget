@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
          overwrite:(BOOL)overwrite
           baseData:(NSData *)baseData
              error:(NSError *__autoreleasing *)error;
+
+- (BOOL)writeFileAtFullPath:(NSString *)fullPath content:(NSObject *)content error:(NSError *__autoreleasing *)error;
 @end
 
 NS_ASSUME_NONNULL_END
