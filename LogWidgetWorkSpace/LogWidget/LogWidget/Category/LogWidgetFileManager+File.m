@@ -62,15 +62,13 @@
  @param inPath 根目录
  @param overwrite 是否重写
  @param baseData 初始数据
- @param error z错误信息
  @return 创建结果
  */
 - (BOOL)createFile:(nonnull NSString *)fileName
       relativePath:(nonnull NSString *)relativePath
             inPath:(DOCUMENT_PATH)inPath
          overwrite:(BOOL)overwrite
-          baseData:(NSData *)baseData
-             error:(NSError *__autoreleasing *)error {
+          baseData:(nullable NSData *)baseData {
     // 如果文件夹路径不存在，那么先创建文件夹
     NSString *fullPath = [self getFullPathBy:inPath relativePath:relativePath];
     BOOL isDirectory;
@@ -99,7 +97,21 @@
     return [self.fileManager createFileAtPath:file_full_path contents:baseData attributes:nil];
 }
 
-- (BOOL)writeFileAtFullPath:(NSString *)fullPath content:(NSObject *)content error:(NSError *__autoreleasing *)error {
+/**
+ 写文件(覆盖)
+
+ @param fileName 文件名称
+ @param relativePath 相对路径
+ @param inPath 根目录
+ @param content 文件内容
+ @param error 错误信息
+ @return 写入结果
+ */
+- (BOOL)writeFile:(nonnull NSString *)fileName
+     relativePath:(nonnull NSString *)relativePath
+           inPath:(DOCUMENT_PATH)inPath
+          content:(NSObject *)content
+            error:(NSError *__autoreleasing *)error {
     //判断文件内容是否为空
     if (!content) {
         [NSException raise:@"非法的文件内容" format:@"文件内容不能为nil"];
@@ -107,7 +119,18 @@
     }
     //判断文件(夹)是否存在
     BOOL isDirectory;
+    NSString *fullPath = [[self getFullPathBy:inPath relativePath:relativePath] stringByAppendingPathComponent:fileName];
     BOOL isExists = [self fileExistsAtPath:fullPath isDirectory:&isDirectory];
+    if (!isExists) {            // 文件不存在
+        if (!(isExists = [self createFile:fileName relativePath:relativePath inPath:inPath overwrite:YES baseData:nil])) {
+            return NO;
+        }
+    } else {                    // 文件已存在
+        if (isDirectory) {
+            [NSException raise:@"目标文件为文件夹" format:@"填写正确的文件"];
+            return false;
+        }
+    }
     if (isExists && !isDirectory) {
         if ([content isKindOfClass:[NSMutableArray class]]) {//文件内容为可变数组
             [(NSMutableArray *)content writeToFile:fullPath atomically:YES];
