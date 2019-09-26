@@ -147,9 +147,9 @@
         }else if ([content isKindOfClass:[NSJSONSerialization class]]) {//文件内容为JSON类型
             [(NSDictionary *)content writeToFile:fullPath atomically:YES];
         }else if ([content isKindOfClass:[NSMutableString class]]) {//文件内容为可变字符串
-            [[((NSString *)content) dataUsingEncoding:NSUTF8StringEncoding] writeToFile:fullPath atomically:YES];
+            [[((NSString *)content) utf8Data] writeToFile:fullPath atomically:YES];
         }else if ([content isKindOfClass:[NSString class]]) {//文件内容为不可变字符串
-            [[((NSString *)content) dataUsingEncoding:NSUTF8StringEncoding] writeToFile:fullPath atomically:YES];
+            [[((NSString *)content) utf8Data] writeToFile:fullPath atomically:YES];
         }else if ([content isKindOfClass:[UIImage class]]) {//文件内容为图片
             [UIImagePNGRepresentation((UIImage *)content) writeToFile:fullPath atomically:YES];
         }else if ([content conformsToProtocol:@protocol(NSCoding)]) {//文件归档
