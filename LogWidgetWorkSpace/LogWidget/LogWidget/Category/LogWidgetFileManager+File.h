@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param relativePath 相对路径
  @param inPath 根目录
  @param content 文件内容
+ @param append 是否拼接方式添加
  @param error 错误信息
  @return 写入结果
  */
@@ -51,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
      relativePath:(nonnull NSString *)relativePath
            inPath:(DOCUMENT_PATH)inPath
           content:(NSObject *)content
+           append:(BOOL)append
             error:(NSError *__autoreleasing *)error;
 @end
 
