@@ -31,7 +31,7 @@
 //    BOOL result = [manager.fileManager createFile:@"123.jpg" relativePath:@"/ios/b/c" inPath:DOCUMENT_PATH_DOCUMENT overwrite:true baseData:nil];
 //    NSLog(@"result: %d", result);
 //    UIImage *img = [UIImage imageNamed:@"1"];
-    [manager.fileManager writeFile:@"/file.txt" relativePath:@"/ios/b/c/" inPath:DOCUMENT_PATH_DOCUMENT content:[@[@"123", @"546", @"的沙发沙发斯蒂芬发的说说"] mutableCopy] append:YES error:nil];
+    [manager.fileManager writeFile:@"/file.txt" relativePath:@"/ios/b/c/" inPath:DOCUMENT_PATH_DOCUMENT content:@{@"key": @"value"} append:YES error:nil];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

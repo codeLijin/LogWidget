@@ -136,26 +136,26 @@
     if (isExists && !isDirectory) {
         NSError *error = nil;
         NSData *data = nil;
-        if ([content isKindOfClass:[NSMutableArray class]]) {                   //文件内容为可变数组
-            NSLog(@"测试: NSMutableArray");
+        if ([content isKindOfClass:[NSMutableArray class]]) {                   //文件内容为可变数组✔️
             data = [(NSMutableArray *)content toJsonData:&error];
-        }else if ([content isKindOfClass:[NSArray class]]) {                        //文件内容为不可变数组
+        }else if ([content isKindOfClass:[NSArray class]]) {                    //文件内容为不可变数组✔️
             data = [(NSMutableArray *)content toJsonData:&error];
-        }else if ([content isKindOfClass:[NSMutableData class]]) {            //文件内容为可变NSMutableData
+        }else if ([content isKindOfClass:[NSMutableData class]]) {            //文件内容为可变NSMutableData✔️
             data = (NSMutableData *)content;
-        }else if ([content isKindOfClass:[NSData class]]) {                         //文件内容为NSData
+        }else if ([content isKindOfClass:[NSData class]]) {                         //文件内容为NSData✔️
             data = (NSData *)content;
-        }else if ([content isKindOfClass:[NSMutableDictionary class]]) {  //文件内容为可变字典
+        }else if ([content isKindOfClass:[NSMutableDictionary class]]) {  //文件内容为可变字典✔️
             data = [(NSMutableDictionary *)content toJsonData:&error];
-        }else if ([content isKindOfClass:[NSDictionary class]]) {               //文件内容为不可变字典
+        }else if ([content isKindOfClass:[NSDictionary class]]) {               //文件内容为不可变字典✔️
             data = [(NSDictionary *)content toJsonData:&error];
         }else if ([content isKindOfClass:[NSJSONSerialization class]]) {  //文件内容为JSON类型
+            NSLog(@"测试: NSMutableDictionary");
             [(NSDictionary *)content writeToFile:fullPath atomically:YES];
         }else if ([content isKindOfClass:[NSMutableString class]]) {        //文件内容为可变字符串
             data = [(NSString *)content utf8Data];
         }else if ([content isKindOfClass:[NSString class]]) {                     //文件内容为不可变字符串
             data = [((NSString *)content) utf8Data];
-        }else if ([content isKindOfClass:[UIImage class]]) {                       //文件内容为图片
+        }else if ([content isKindOfClass:[UIImage class]]) {                       //文件内容为图片✔️
             data = UIImagePNGRepresentation((UIImage *)content);
         }else if ([content conformsToProtocol:@protocol(NSCoding)]) {  //文件归档
             return [NSKeyedArchiver archiveRootObject:content toFile:fullPath];
@@ -163,6 +163,7 @@
             [NSException raise:@"非法的文件内容" format:@"文件类型%@异常，无法被处理。", NSStringFromClass([content class])];
             ret = false;
         }
+        ret = [self writeData:data toPath:fullPath append:append];
     } else {
         ret = false;
     }
