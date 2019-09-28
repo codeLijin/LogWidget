@@ -159,6 +159,94 @@
     }
 }
 
+/**
+ 删除文件(夹)
+ 
+ @param path 文件夹路径
+ @param error 错误信息
+ @return 删除成功
+ */
+- (BOOL)removeItemAtPath:(NSString *_Nonnull)path error:(NSError *__autoreleasing *_Nullable)error {
+    if (!self.fileManager || !path || !path.length) {
+        return false;
+    }
+    BOOL isRemove = [_fileManager removeItemAtPath:path error:error];
+    if (error && *error) {
+        NSLog(@"createDirectoryAtPath:withIntermediateDirectories:attributes:error - %s [%d] \n %@", __PRETTY_FUNCTION__, __LINE__, *error);
+    }
+    return isRemove;
+}
+
+#pragma mark - 移动文件(夹)
+/*参数1、被移动文件路径
+ *参数2、要移动到的目标文件路径
+ *参数3、当要移动到的文件路径文件存在，会移动失败，这里传入是否覆盖
+ *参数4、错误信息
+ + (BOOL)moveItemAtPath:(NSString *)path toPath:(NSString *)toPath overwrite:(BOOL)overwrite error:(NSError *__autoreleasing *)error {
+ // 先要保证源文件路径存在，不然抛出异常
+ if (![self isExistsAtPath:path]) {
+ [NSException raise:@"非法的源文件路径" format:@"源文件路径%@不存在，请检查源文件路径", path];
+ return NO;
+ }
+ //获得目标文件的上级目录
+ NSString *toDirPath = [self directoryAtPath:toPath];
+ if (![self isExistsAtPath:toDirPath]) {
+ // 创建移动路径
+ if (![self createDirectoryAtPath:toDirPath error:error]) {
+ return NO;
+ }
+ }
+ // 判断目标路径文件是否存在
+ if ([self isExistsAtPath:toPath]) {
+ //如果覆盖，删除目标路径文件
+ if (overwrite) {
+ //删掉目标路径文件
+ [self removeItemAtPath:toPath error:error];
+ }else {
+ //删掉被移动文件
+ [self removeItemAtPath:path error:error];
+ return YES;
+ }
+ }
+ 
+ // 移动文件，当要移动到的文件路径文件存在，会移动失败
+ BOOL isSuccess = [[NSFileManager defaultManager] moveItemAtPath:path toPath:toPath error:error];
+ 
+ return isSuccess;
+ }
+ */
+
+#pragma mark - 复制文件(夹)
+/*参数1、被复制文件(夹)路径
+ *参数2、要复制到的目标文件路径
+ *参数3、当要复制到的文件路径文件存在，会复制失败，这里传入是否覆盖
+ *参数4、错误信息
+ + (BOOL)copyItemAtPath:(NSString *)path toPath:(NSString *)toPath overwrite:(BOOL)overwrite error:(NSError *__autoreleasing *)error {
+ // 先要保证源文件路径存在，不然抛出异常
+ if (![self isExistsAtPath:path]) {
+ [NSException raise:@"非法的源文件路径" format:@"源文件路径%@不存在，请检查源文件路径", path];
+ return NO;
+ }
+ //获得目标文件的上级目录
+ NSString *toDirPath = [self directoryAtPath:toPath];
+ if (![self isExistsAtPath:toDirPath]) {
+ // 创建复制路径
+ if (![self createDirectoryAtPath:toDirPath error:error]) {
+ return NO;
+ }
+ }
+ // 如果覆盖，那么先删掉原文件
+ if (overwrite) {
+ if ([self isExistsAtPath:toPath]) {
+ [self removeItemAtPath:toPath error:error];
+ }
+ }
+ // 复制文件，如果不覆盖且文件已存在则会复制失败
+ BOOL isSuccess = [[NSFileManager defaultManager] copyItemAtPath:path toPath:toPath error:error];
+ 
+ return isSuccess;
+ }
+ */
 
 #pragma mark - getter & setter
 - (nonnull NSFileManager *)fileManager {

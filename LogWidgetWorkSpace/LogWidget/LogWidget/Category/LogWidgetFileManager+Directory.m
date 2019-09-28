@@ -41,7 +41,7 @@
                 // 不需销毁, 直接返回
                 return true;
             }
-            BOOL isRemove = [self fileManager:self.fileManager removeItemAtPath:full_path error:&error];
+            BOOL isRemove = [self removeItemAtPath:full_path error:&error];
             NSLog(@"%@", isRemove?@"删除成功" : @"删除失败");
             if (!isRemove) {        // 删除旧文件失败, 不影响文件操作, 返回true
                 return true;
@@ -82,24 +82,6 @@
         NSLog(@"文件夹 %@ 创建失败", path);
         return false;
     }
-}
-
-/**
- 删除文件夹
- 
- @param path 文件夹路径
- @param error 错误信息
- @return 删除成功
- */
-- (BOOL)fileManager:(NSFileManager *_Nonnull)fileManager removeItemAtPath:(NSString *_Nonnull)path error:(NSError *__autoreleasing *_Nullable)error {
-    if (!fileManager || !path || !path.length) {
-        return false;
-    }
-    BOOL isRemove = [fileManager removeItemAtPath:path error:error];
-    if (*error) {
-        NSLog(@"createDirectoryAtPath:withIntermediateDirectories:attributes:error - %s [%d] \n %@", __PRETTY_FUNCTION__, __LINE__, *error);
-    }
-    return isRemove;
 }
 
 - (NSNumber *)getDirSize:(NSString *)path sizeStandard:(SIZE_STANDARD)standard {
