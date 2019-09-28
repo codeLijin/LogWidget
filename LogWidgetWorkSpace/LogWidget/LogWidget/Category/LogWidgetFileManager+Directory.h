@@ -47,16 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
 intermediateDirectories:(BOOL)intermediateDirectories
               error:(NSError *__autoreleasing *_Nullable)error ;
 
-/**
- 删除文件夹
- 
- @param path 文件夹路径
- @param error 错误信息
- @return 删除成功
- */
-- (BOOL)fileManager:(NSFileManager *_Nonnull)fileManager
-   removeItemAtPath:(NSString *_Nonnull)path
-              error:(NSError *__autoreleasing *_Nullable)error;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -66,6 +66,15 @@ NS_ASSUME_NONNULL_BEGIN
                         fullPath:(nonnull NSString *)path
                       dateFormat:(nullable NSString *)dateFormat;
 
+/**
+ 删除文件夹
+ 
+ @param path 文件夹路径
+ @param error 错误信息
+ @return 删除成功
+ */
+- (BOOL)removeItemAtPath:(NSString *_Nonnull)path
+                   error:(NSError *__autoreleasing *_Nullable)error;
 #pragma mark - getter
 /**
  文件管理器
