@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDictionary (YNCoding)
 
-- (NSString*)toJsonString:(NSError *__autoreleasing *)error;
+- (NSString*)yn_toJsonString:(NSError *__autoreleasing *)error;
 
-- (NSData *)toJsonData:(NSError *__autoreleasing *)error;
+- (NSData *)yn_toJsonData:(NSError *__autoreleasing *)error;
 
 @end
 

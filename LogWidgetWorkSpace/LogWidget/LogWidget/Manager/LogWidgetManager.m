@@ -38,7 +38,7 @@ static LogWidgetManager *manager = nil;
 {
     self = [super init];
     if (self) {
-        self.fileManager = [LogWidgetFileManager fileManager];
+        self.fileManager = YNLogFileManager;
         self.gloableTool = [LogWidgetGloableTool tool];
     }
     return self;

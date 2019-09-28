@@ -1,8 +1,8 @@
 //
-//  NSString+Coding.h
+//  YNCodingModel.h
 //  LogWidget
 //
-//  Created by 李晋 on 2019/9/26.
+//  Created by lijin743 on 2019/9/28.
 //  Copyright © 2019 李晋. All rights reserved.
 //
 
@@ -10,9 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSString (YNCoding)
-
-- (NSData *)yn_utf8Data;
+@interface YNCodingModel : NSObject<NSCoding>
 
 @end
 

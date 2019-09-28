@@ -10,7 +10,7 @@
 
 @implementation NSDictionary (YNCoding)
 
-- (NSString*)toJsonString:(NSError *__autoreleasing *)error {
+- (NSString*)yn_toJsonString:(NSError *__autoreleasing *)error {
     if (!self) {
         return nil;
     }
@@ -26,10 +26,10 @@
     return jsonString;
 }
 
-- (NSData *)toJsonData:(NSError *__autoreleasing *)error {
-    NSString *json = [self toJsonString:error];
+- (NSData *)yn_toJsonData:(NSError *__autoreleasing *)error {
+    NSString *json = [self yn_toJsonString:error];
     if (json && json.length) {
-        return [json utf8Data];
+        return [json yn_utf8Data];
     }
     return nil;
 }

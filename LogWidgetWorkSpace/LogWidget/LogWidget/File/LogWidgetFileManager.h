@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <LogWidget/PublicEnum.h>
 
+#define YNLogFileManager [LogWidgetFileManager fileManager]
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LogWidgetFileManager : NSObject
@@ -25,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param relativePath 相对路径
  @return full_path
  */
-- (NSString *)getFullPathBy:(DOCUMENT_PATH)path relativePath:(nonnull NSString *)relativePath;
+- (NSString *)getFullPathBy:(DOCUMENT_PATH)path relativePath:(nullable NSString *)relativePath;
 
 /**
  判断文件/文件夹是否存在

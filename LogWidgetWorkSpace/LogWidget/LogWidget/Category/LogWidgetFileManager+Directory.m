@@ -22,11 +22,14 @@
 - (BOOL)createFolder:(nonnull NSString *)folder
               inPath:(DOCUMENT_PATH)path
        clearIfNeeded:(clearDir)clearIfNeeded {
-    if (!folder || path > DOCUMENT_PATH_TMP) {
+    if (!folder || path > DOCUMENT_PATH_CACHE || path < DOCUMENT_PATH_HOME) {
         return false;
     }
     NSError *error = nil;
     NSString *full_path = [self getFullPathBy:path relativePath:folder];
+    if (!full_path.length) {
+        return false;
+    }
     // 是否为目录
     BOOL isDir = false;
     // 是否存在

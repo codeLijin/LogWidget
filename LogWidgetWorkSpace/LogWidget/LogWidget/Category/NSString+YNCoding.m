@@ -10,7 +10,7 @@
 
 @implementation NSString (YNCoding)
 
-- (NSData *)utf8Data {
+- (NSData *)yn_utf8Data {
     if (self && self.length) {
         return [self dataUsingEncoding:NSUTF8StringEncoding];
     }

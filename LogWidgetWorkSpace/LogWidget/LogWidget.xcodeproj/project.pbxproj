@@ -15,6 +15,10 @@
 		AD0FCC26233DBE5900FBAC95 /* NSDictionary+YNCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0FCC24233DBE5900FBAC95 /* NSDictionary+YNCoding.m */; };
 		AD0FCC29233E08CE00FBAC95 /* NSArray+YNCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = AD0FCC27233E08CD00FBAC95 /* NSArray+YNCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD0FCC2A233E08CE00FBAC95 /* NSArray+YNCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0FCC28233E08CD00FBAC95 /* NSArray+YNCoding.m */; };
+		AD284E45233F22A200A365BF /* YNCodingModel.h in Headers */ = {isa = PBXBuildFile; fileRef = AD284E43233F22A200A365BF /* YNCodingModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD284E46233F22A200A365BF /* YNCodingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD284E44233F22A200A365BF /* YNCodingModel.m */; };
+		AD284E4D233F2B1700A365BF /* YNPathModel.h in Headers */ = {isa = PBXBuildFile; fileRef = AD284E4B233F2B1700A365BF /* YNPathModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD284E4E233F2B1700A365BF /* YNPathModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD284E4C233F2B1700A365BF /* YNPathModel.m */; };
 		FA6D6771233136FF00E6BABF /* LogWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6D6767233136FF00E6BABF /* LogWidget.framework */; };
 		FA6D6776233136FF00E6BABF /* LogWidgetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D6775233136FF00E6BABF /* LogWidgetTests.m */; };
 		FA6D6778233136FF00E6BABF /* LogWidget.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6D676A233136FF00E6BABF /* LogWidget.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +55,10 @@
 		AD0FCC24233DBE5900FBAC95 /* NSDictionary+YNCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YNCoding.m"; sourceTree = "<group>"; };
 		AD0FCC27233E08CD00FBAC95 /* NSArray+YNCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+YNCoding.h"; sourceTree = "<group>"; };
 		AD0FCC28233E08CD00FBAC95 /* NSArray+YNCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+YNCoding.m"; sourceTree = "<group>"; };
+		AD284E43233F22A200A365BF /* YNCodingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNCodingModel.h; sourceTree = "<group>"; };
+		AD284E44233F22A200A365BF /* YNCodingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNCodingModel.m; sourceTree = "<group>"; };
+		AD284E4B233F2B1700A365BF /* YNPathModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNPathModel.h; sourceTree = "<group>"; };
+		AD284E4C233F2B1700A365BF /* YNPathModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNPathModel.m; sourceTree = "<group>"; };
 		FA6D6767233136FF00E6BABF /* LogWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LogWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6D676A233136FF00E6BABF /* LogWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWidget.h; sourceTree = "<group>"; };
 		FA6D676B233136FF00E6BABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +123,17 @@
 			path = Extention;
 			sourceTree = "<group>";
 		};
+		AD284E42233F227200A365BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD284E43233F22A200A365BF /* YNCodingModel.h */,
+				AD284E44233F22A200A365BF /* YNCodingModel.m */,
+				AD284E4B233F2B1700A365BF /* YNPathModel.h */,
+				AD284E4C233F2B1700A365BF /* YNPathModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FA6D675D233136FF00E6BABF = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +155,7 @@
 		FA6D6769233136FF00E6BABF /* LogWidget */ = {
 			isa = PBXGroup;
 			children = (
+				AD284E42233F227200A365BF /* Model */,
 				AD06026E2332067B00FACC1E /* Extention */,
 				AD060264233201FC00FACC1E /* Category */,
 				FA6D678F23314C3600E6BABF /* Tools */,
@@ -200,6 +220,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD284E4D233F2B1700A365BF /* YNPathModel.h in Headers */,
+				AD284E45233F22A200A365BF /* YNCodingModel.h in Headers */,
 				AD0FCC29233E08CE00FBAC95 /* NSArray+YNCoding.h in Headers */,
 				AD0FCC25233DBE5900FBAC95 /* NSDictionary+YNCoding.h in Headers */,
 				FAF51194233D03F30007FF74 /* NSString+YNCoding.h in Headers */,
@@ -312,10 +334,12 @@
 			files = (
 				AD06026D233203F600FACC1E /* LogWidgetFileManager+Directory.m in Sources */,
 				FA6D67A6233549FC00E6BABF /* LogWidgetGloableTool.m in Sources */,
+				AD284E4E233F2B1700A365BF /* YNPathModel.m in Sources */,
 				FA6D678D2331387E00E6BABF /* LogWidgetFileManager.m in Sources */,
 				FA6D67A02335257A00E6BABF /* LogWidgetFileManager+File.m in Sources */,
 				FAF51195233D03F30007FF74 /* NSString+YNCoding.m in Sources */,
 				FA6D67872331377D00E6BABF /* LogWidgetManager.m in Sources */,
+				AD284E46233F22A200A365BF /* YNCodingModel.m in Sources */,
 				AD0FCC2A233E08CE00FBAC95 /* NSArray+YNCoding.m in Sources */,
 				AD0602682332024900FACC1E /* NSFileManager+Path.m in Sources */,
 				AD0FCC26233DBE5900FBAC95 /* NSDictionary+YNCoding.m in Sources */,

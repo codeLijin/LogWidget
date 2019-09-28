@@ -34,7 +34,7 @@
  @param relativePath 相对路径
  @return full_path
  */
-- (NSString *)getFullPathBy:(DOCUMENT_PATH)path relativePath:(nonnull NSString *)relativePath {
+- (NSString *)getFullPathBy:(DOCUMENT_PATH)path relativePath:(nullable NSString *)relativePath {
     NSString *pre_path = nil;
     switch (path) {
         case DOCUMENT_PATH_HOME:
@@ -46,23 +46,28 @@
         case DOCUMENT_PATH_LIBARAY:
             pre_path = [NSFileManager libraryPath];
             break;
+        case DOCUMENT_PATH_TMP:
+            pre_path = [NSFileManager tmpPath];
+            break;
         case DOCUMENT_PATH_PREFERENCES:
             pre_path = [NSFileManager preferencesPath];
             break;
         case DOCUMENT_PATH_CACHE:
             pre_path = [NSFileManager cachePath];
             break;
-        case DOCUMENT_PATH_TMP:
-            pre_path = [NSFileManager tmpPath];
-            break;
+        case DOCUMENT_PATH_ERROR:
+            return nil;
         default:
             // TODO: get Path Error, Make AlertView Show On
+            return nil;
             break;
     }
     if (!pre_path) {
         return pre_path;
     }
-    pre_path = [pre_path stringByAppendingPathComponent:relativePath];
+    if (relativePath.length) {
+        pre_path = [pre_path stringByAppendingPathComponent:relativePath];
+    }
     return pre_path;
 }
 
