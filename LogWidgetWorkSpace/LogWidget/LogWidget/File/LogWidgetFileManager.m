@@ -183,6 +183,7 @@
  *参数3、当要移动到的文件路径文件存在，会移动失败，这里传入是否覆盖
  *参数4、错误信息
  + (BOOL)moveItemAtPath:(NSString *)path toPath:(NSString *)toPath overwrite:(BOOL)overwrite error:(NSError *__autoreleasing *)error {
+ https://www.jianshu.com/p/d7050b1fe978
  // 先要保证源文件路径存在，不然抛出异常
  if (![self isExistsAtPath:path]) {
  [NSException raise:@"非法的源文件路径" format:@"源文件路径%@不存在，请检查源文件路径", path];
