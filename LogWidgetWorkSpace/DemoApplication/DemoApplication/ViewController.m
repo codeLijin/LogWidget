@@ -19,13 +19,22 @@
     [super viewDidLoad];
     LogWidgetManager *manager = [LogWidgetManager manager];
     
-    NSString *path = [manager.fileManager getFullPathBy:DOCUMENT_PATH_HOME relativePath:@"/ios/a/c/ff.jpg"];
-    NSLog(@"完整路径: \n\t%@", path);
+//    NSString *path = [manager.fileManager getFullPathBy:DOCUMENT_PATH_HOME relativePath:@"/ios/a/c/ff.jpg"];
+//    NSLog(@"完整路径: \n\t%@", path);
     
-    YNPathModel *model = [YNPathModel modelWithOringinPath:path isDirectory:NO];
-    model.pathExtension = @"lijin";
     NSLog(@"\n");
     
+    /**
+     创建数据模型 YN
+     YNPathModel *model = [YNPathModel modelWithYNPath:DOCUMENT_PATH_HOME yn_relativePath:@"ios/a/c" yn_fileName:@"lijin.arc" isDirectory:NO];
+     model.pathExtension = @"yn";
+     */
+    
+    /**
+     创建数据模型 OR
+     YNPathModel *model = [YNPathModel modelWithOringinPath:path isDirectory:NO];
+     model.pathExtension = @"lijin";
+     */
 
     /**
      创建文件

@@ -25,11 +25,14 @@
     return model;
 }
 
-+ (instancetype)modelWithYNPath:(DOCUMENT_PATH)yn_PATH yn_relativePath:(NSString *)yn_relativePath yn_fileName:(NSString *)yn_fileName {
++ (instancetype)modelWithYNPath:(DOCUMENT_PATH)yn_PATH
+                yn_relativePath:(nullable NSString *)yn_relativePath
+                    yn_fileName:(nullable NSString *)yn_fileName
+                    isDirectory:(BOOL)isDirectory {
     if (yn_PATH > DOCUMENT_PATH_CACHE || yn_PATH < DOCUMENT_PATH_HOME) {
         return [[YNPathModel alloc] init];
     }
-    return [[YNPathModel alloc] initWithYNPath:yn_PATH yn_relativePath:yn_relativePath yn_fileName:yn_fileName];
+    return [[YNPathModel alloc] initWithYNPath:yn_PATH yn_relativePath:yn_relativePath yn_fileName:yn_fileName isDirectory:isDirectory];
 }
 
 - (instancetype)initWithOringinPath:(NSString *)oringinPath isDirectory:(BOOL)isDirectory {
@@ -43,12 +46,16 @@
     return self;
 }
 
-- (instancetype)initWithYNPath:(DOCUMENT_PATH)yn_PATH yn_relativePath:(NSString *)yn_relativePath yn_fileName:(NSString *)yn_fileName {
+- (instancetype)initWithYNPath:(DOCUMENT_PATH)yn_PATH
+               yn_relativePath:(NSString *)yn_relativePath
+                   yn_fileName:(NSString *)yn_fileName
+                   isDirectory:(BOOL)isDirectory {
     self = [super init];
     if (self) {
         _yn_PATH = yn_PATH;
         _yn_relativePath = yn_relativePath;
         _yn_fileName = yn_fileName;
+        _directory = isDirectory;
         [self _ynPathMakeProperties];
     }
     return self;
@@ -71,7 +78,7 @@
     _relativePath = [_oringinPath stringByAbbreviatingWithTildeInPath];
     _pathExtension = [_oringinPath pathExtension];
     _stringByDeletingPathExtension = [_oringinPath stringByDeletingPathExtension];
-    {
+    {       // YN Properties
         DOCUMENT_PATH PATH = _yn_PATH = DOCUMENT_PATH_ERROR;
         while ((PATH--) >= DOCUMENT_PATH_HOME && _oringinPath.length) {
             NSString *prefixHeader = [YNLogFileManager getFullPathBy:PATH relativePath:nil];
@@ -92,6 +99,19 @@
 
 - (void)_ynPathMakeProperties {
     /// TODO: 属性转化 yn->origin
+    if (_yn_PATH == DOCUMENT_PATH_ERROR) {
+        return;
+    }
+    NSString *fullPath = [YNLogFileManager getFullPathBy:_yn_PATH relativePath:_yn_relativePath];
+    if (!fullPath.length) {
+        return;
+    }
+    // oringin Properties
+    _oringinPath = [fullPath stringByAppendingPathComponent:_yn_fileName];
+    _lastPathComponent = [_oringinPath lastPathComponent];
+    _relativePath = [_oringinPath stringByAbbreviatingWithTildeInPath];
+    _pathExtension = [_oringinPath pathExtension];
+    _stringByDeletingPathExtension = [_oringinPath stringByDeletingPathExtension];
 }
 
 #pragma mark - Setter
@@ -116,7 +136,7 @@
     if (!pathExtension.length) {
         _oringinPath = _path__;
     } else {
-        _oringinPath = [_oringinPath stringByAppendingPathExtension:pathExtension]; //加入后缀名
+        _oringinPath = [_path__ stringByAppendingPathExtension:pathExtension]; //加入后缀名
     }
     [self _oringinPathMakeProperties];
 }

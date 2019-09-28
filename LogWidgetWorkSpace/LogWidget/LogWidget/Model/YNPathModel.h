@@ -53,6 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)modelWithOringinPath:(NSString *)oringinPath isDirectory:(BOOL)isDirectory;
 
++ (instancetype)modelWithYNPath:(DOCUMENT_PATH)yn_PATH
+                yn_relativePath:(nullable NSString *)yn_relativePath
+                    yn_fileName:(nullable NSString *)yn_fileName
+                    isDirectory:(BOOL)isDirectory;
+
 @end
 
 NS_ASSUME_NONNULL_END
