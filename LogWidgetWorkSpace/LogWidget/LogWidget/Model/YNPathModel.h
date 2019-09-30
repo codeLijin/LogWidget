@@ -69,6 +69,13 @@ NS_ASSUME_NONNULL_BEGIN
               completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion;
 
 - (void)yn_moveToFullPath:(NSString *)fullPath overwrite:(BOOL)overwrite completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion;
+
+- (void)yn_copyToYN_Path:(DOCUMENT_PATH)yn_PATH
+          toRelativePath:(NSString *)yn_relativePath
+               overwrite:(BOOL)overwrite
+              completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion;
+
+- (void)yn_copyToFullPath:(NSString *)fullPath overwrite:(BOOL)overwrite completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -160,9 +160,33 @@
 - (void)yn_moveToFullPath:(NSString *)fullPath overwrite:(BOOL)overwrite completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion {
     __weak typeof(self) weakSelf = self;
     dispatch_async([YNLogFileManager fileOperationQueue], ^{
-        __strong typeof(self) strongSelf = weakSelf;
+        __strong typeof(weakSelf) strongSelf = weakSelf;
         NSError *error;
         BOOL result = [YNLogFileManager moveItemAtPath:strongSelf.oringinPath fullPath:fullPath overwrite:overwrite error:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(result, error);
+        });
+    });
+}
+
+- (void)yn_copyToYN_Path:(DOCUMENT_PATH)yn_PATH
+                   toRelativePath:(NSString *)yn_relativePath
+                            overwrite:(BOOL)overwrite
+                         completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion {
+    NSString *path = [YNLogFileManager getFullPathBy:yn_PATH relativePath:yn_relativePath];
+    if (!path.length) {
+        completion(NO, [NSError errorWithDomain:@"wrong target file" code:102 userInfo:nil]);
+    } else {
+        [self yn_copyToFullPath:path overwrite:overwrite completion:completion];
+    }
+}
+
+- (void)yn_copyToFullPath:(NSString *)fullPath overwrite:(BOOL)overwrite completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async([YNLogFileManager fileOperationQueue], ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSError *error;
+        BOOL result = [YNLogFileManager yn_copyItemAtPath:strongSelf.oringinPath fullPath:fullPath overwrite:overwrite error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(result, error);
         });

@@ -24,10 +24,18 @@
     
     YNPathModel *mode = [YNPathModel modelWithOringinPath:path isDirectory:NO];
     [mode createClearIfNeeded:NO];
-    [mode yn_moveToYN_Path:DOCUMENT_PATH_TMP toRelativePath:@"demo1" overwrite:YES completion:^(BOOL result, NSError *__autoreleasing  _Nullable error) {
-        NSLog(@"result: %d", result);
-    }];
     NSLog(@"");
+    
+    /**
+     拷贝/移动
+     [mode yn_moveToYN_Path:DOCUMENT_PATH_TMP toRelativePath:@"demo1" overwrite:YES completion:^(BOOL result, NSError *__autoreleasing  _Nullable error) {
+     NSLog(@"result: %d", result);
+     }];
+     [mode yn_copyToYN_Path:DOCUMENT_PATH_TMP toRelativePath:@"demo3.txt" overwrite:YES completion:^(BOOL result, NSError *__autoreleasing  _Nullable error) {
+     NSLog(@"result: %d", result);
+     }];
+     */
+    
 //
 //    [manager.fileManager removeItemAtPath:path error:nil];
 //    BOOL result = [manager.fileManager moveItemAtPath:path toPath:DOCUMENT_PATH_HOME toRelativePath:@"ios/li.txt" overwrite:YES error:nil];
