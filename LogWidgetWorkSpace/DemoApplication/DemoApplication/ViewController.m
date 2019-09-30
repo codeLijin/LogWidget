@@ -20,11 +20,25 @@
     LogWidgetManager *manager = [LogWidgetManager manager];
     
 
-    NSString *path = [manager.fileManager getFullPathBy:DOCUMENT_PATH_DOCUMENT relativePath:@"/ios/a/"];
-    NSLog(@"完整路径: \n\t%@", path);
+    NSString *path = [manager.fileManager getFullPathBy:DOCUMENT_PATH_LIBARAY relativePath:@"qq.txt"];
     
-    [manager.fileManager removeItemAtPath:path error:nil];
-    NSLog(@"\n");
+    YNPathModel *mode = [YNPathModel modelWithOringinPath:path isDirectory:NO];
+    [mode createClearIfNeeded:NO];
+    [mode yn_moveToYN_Path:DOCUMENT_PATH_TMP toRelativePath:@"demo1" overwrite:YES completion:^(BOOL result, NSError *__autoreleasing  _Nullable error) {
+        NSLog(@"result: %d", result);
+    }];
+    NSLog(@"");
+//
+//    [manager.fileManager removeItemAtPath:path error:nil];
+//    BOOL result = [manager.fileManager moveItemAtPath:path toPath:DOCUMENT_PATH_HOME toRelativePath:@"ios/li.txt" overwrite:YES error:nil];
+    
+    /**
+     model使用: 移动文件
+     YNPathModel *mode = [YNPathModel modelWithOringinPath:path isDirectory:NO destroyIfNeeded:NO];
+     [mode yn_moveToYN_Path:DOCUMENT_PATH_LIBARAY toRelativePath:@"qq.txt" overwrite:YES completion:^(BOOL result, NSError *__autoreleasing  _Nullable error) {
+     NSLog(@"result: %d -- %@", result, error);
+     }];
+     */
     
     /**
      创建文件

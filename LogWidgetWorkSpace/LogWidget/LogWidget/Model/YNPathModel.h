@@ -58,6 +58,17 @@ NS_ASSUME_NONNULL_BEGIN
                     yn_fileName:(nullable NSString *)yn_fileName
                     isDirectory:(BOOL)isDirectory;
 
+#pragma mark - options
+- (BOOL)createClearIfNeeded:(BOOL)destroyIfNeeded;
+
+- (void)yn_write:(nonnull NSObject *)content overwrite:(BOOL)overwrite completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion;
+
+- (void)yn_moveToYN_Path:(DOCUMENT_PATH)yn_PATH
+          toRelativePath:(NSString *)yn_relativePath
+               overwrite:(BOOL)overwrite
+              completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion;
+
+- (void)yn_moveToFullPath:(NSString *)fullPath overwrite:(BOOL)overwrite completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion;
 @end
 
 NS_ASSUME_NONNULL_END

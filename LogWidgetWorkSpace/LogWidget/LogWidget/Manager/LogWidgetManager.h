@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#define YNLogWidgetManager [LogWidgetManager manager]
+
 @class LogWidgetFileManager;
 @class LogWidgetGloableTool;
 

@@ -13,6 +13,14 @@
 }
 
 @property (nonatomic, readwrite, strong) NSFileManager *fileManager;
+/**
+ 读写文件队列
+ */
+@property (nonatomic, readwrite, strong) dispatch_queue_t rw_file_queue;
+/**
+ 文件操作队列
+ */
+@property (nonatomic, readwrite, strong) dispatch_queue_t file_option_queue;
 @end
 
 @implementation LogWidgetFileManager
@@ -23,6 +31,8 @@
     dispatch_once(&onceToken, ^{
         manager = [[self alloc] init];
         manager.fileManager = [NSFileManager defaultManager];
+        manager.rw_file_queue = dispatch_queue_create("com.jd.wirte.lijin", DISPATCH_QUEUE_SERIAL);
+        manager.file_option_queue = dispatch_queue_create("com.jd.fileop.lijin", DISPATCH_QUEUE_SERIAL);
     });
     return manager;
 }
@@ -81,6 +91,13 @@
 - (BOOL)fileExistsAtPath:(nonnull NSString *)path isDirectory:(nullable out BOOL *)isDirectory {
     BOOL exists = [self.fileManager fileExistsAtPath:path isDirectory:isDirectory];
     return exists;
+}
+
+- (NSString *)directoryAtPath:(NSString *)path {
+    if (path.length && [self fileExistsAtPath:path isDirectory:nil]) {
+        return [path stringByDeletingLastPathComponent];
+    }
+    return nil;
 }
 
 /**
@@ -177,77 +194,122 @@
     return isRemove;
 }
 
-#pragma mark - 移动文件(夹)
-/*参数1、被移动文件路径
- *参数2、要移动到的目标文件路径
- *参数3、当要移动到的文件路径文件存在，会移动失败，这里传入是否覆盖
- *参数4、错误信息
- + (BOOL)moveItemAtPath:(NSString *)path toPath:(NSString *)toPath overwrite:(BOOL)overwrite error:(NSError *__autoreleasing *)error {
- https://www.jianshu.com/p/d7050b1fe978
- // 先要保证源文件路径存在，不然抛出异常
- if (![self isExistsAtPath:path]) {
- [NSException raise:@"非法的源文件路径" format:@"源文件路径%@不存在，请检查源文件路径", path];
- return NO;
- }
- //获得目标文件的上级目录
- NSString *toDirPath = [self directoryAtPath:toPath];
- if (![self isExistsAtPath:toDirPath]) {
- // 创建移动路径
- if (![self createDirectoryAtPath:toDirPath error:error]) {
- return NO;
- }
- }
- // 判断目标路径文件是否存在
- if ([self isExistsAtPath:toPath]) {
- //如果覆盖，删除目标路径文件
- if (overwrite) {
- //删掉目标路径文件
- [self removeItemAtPath:toPath error:error];
- }else {
- //删掉被移动文件
- [self removeItemAtPath:path error:error];
- return YES;
- }
- }
- 
- // 移动文件，当要移动到的文件路径文件存在，会移动失败
- BOOL isSuccess = [[NSFileManager defaultManager] moveItemAtPath:path toPath:toPath error:error];
- 
- return isSuccess;
- }
- */
+/**
+ 移动文件(夹)
 
-#pragma mark - 复制文件(夹)
-/*参数1、被复制文件(夹)路径
- *参数2、要复制到的目标文件路径
- *参数3、当要复制到的文件路径文件存在，会复制失败，这里传入是否覆盖
- *参数4、错误信息
- + (BOOL)copyItemAtPath:(NSString *)path toPath:(NSString *)toPath overwrite:(BOOL)overwrite error:(NSError *__autoreleasing *)error {
- // 先要保证源文件路径存在，不然抛出异常
- if (![self isExistsAtPath:path]) {
- [NSException raise:@"非法的源文件路径" format:@"源文件路径%@不存在，请检查源文件路径", path];
- return NO;
- }
- //获得目标文件的上级目录
- NSString *toDirPath = [self directoryAtPath:toPath];
- if (![self isExistsAtPath:toDirPath]) {
- // 创建复制路径
- if (![self createDirectoryAtPath:toDirPath error:error]) {
- return NO;
- }
- }
- // 如果覆盖，那么先删掉原文件
- if (overwrite) {
- if ([self isExistsAtPath:toPath]) {
- [self removeItemAtPath:toPath error:error];
- }
- }
- // 复制文件，如果不覆盖且文件已存在则会复制失败
- BOOL isSuccess = [[NSFileManager defaultManager] copyItemAtPath:path toPath:toPath error:error];
- 
- return isSuccess;
- }
+ @param sourceFullPath 源完全路径
+ @param toPath 目标主目录
+ @param toRelativePath 目标相对路径
+ @param overwrite 是否覆盖
+ @param error 错误信息
+ @return 操作结果
  */
+- (BOOL)moveItemAtPath:(NSString *)sourceFullPath
+                                toPath:(DOCUMENT_PATH)toPath
+                       toRelativePath:(nullable NSString *)toRelativePath
+                           overwrite:(BOOL)overwrite
+                                  error:(NSError *__autoreleasing *)error {
+    // 先要保证源文件路径存在，不然抛出异常
+    BOOL isDirectory;
+    if (![self fileExistsAtPath:sourceFullPath isDirectory:&isDirectory]) {
+        [NSException raise:@"非法的源文件路径" format:@"源文件路径%@不存在，请检查源文件路径", sourceFullPath];
+        return NO;
+    }
+    NSString *targetPath = [self getFullPathBy:toPath relativePath:toRelativePath];
+    BOOL isSuccess = [self moveItemAtPath:sourceFullPath fullPath:targetPath overwrite:overwrite error:error];
+    return isSuccess;
+}
+
+- (BOOL)moveItemAtPath:(NSString *)sourceFullPath
+                              fullPath:(nullable NSString *)fullPath
+                           overwrite:(BOOL)overwrite
+                                  error:(NSError *__autoreleasing *)error {
+    //获得目标文件的上级目录
+    if (!fullPath.length) {
+        return false;
+    }
+    NSString *toDirPath = [fullPath stringByDeletingLastPathComponent];
+    if (!toDirPath.length) {
+        return false;
+    }
+    BOOL isDirectory;
+    if (![self fileExistsAtPath:toDirPath isDirectory:&isDirectory]) {
+        // 创建移动路径
+        if (![self createFolderFullPath:toDirPath clearIfNeeded:YES error:error]) {
+            return NO;
+        }
+    }
+    // 判断目标路径文件是否存在
+    if ([self fileExistsAtPath:fullPath isDirectory:&isDirectory]) {
+        //如果覆盖，删除目标路径文件
+        if (overwrite) {
+            //删掉目标路径文件
+            [self removeItemAtPath:fullPath error:error];
+        }else {
+            //删掉被移动文件
+            [self removeItemAtPath:sourceFullPath error:error];
+            return YES;
+        }
+    }
+    return [[NSFileManager defaultManager] moveItemAtPath:sourceFullPath toPath:fullPath error:error];
+}
+
+/**
+ 复制文件(夹)
+
+ @param sourceFullPath 源完全路径
+ @param toPath 目标主目录
+ @param toRelativePath 目标相对路径
+ @param overwrite 是否覆盖
+ @param error 错误信息
+ */
+- (BOOL)yn_copyItemAtPath:(NSString *)sourceFullPath
+                           toPath:(DOCUMENT_PATH)toPath
+                   toRelativePath:(nullable NSString *)toRelativePath
+                        overwrite:(BOOL)overwrite
+                            error:(NSError *__autoreleasing *)error {
+    // 先要保证源文件路径存在，不然抛出异常
+    BOOL isDirectory;
+    if (![self fileExistsAtPath:sourceFullPath isDirectory:&isDirectory]) {
+        [NSException raise:@"非法的源文件路径" format:@"源文件路径%@不存在，请检查源文件路径", sourceFullPath];
+        return NO;
+    }
+    NSString *targetPath = [self getFullPathBy:toPath relativePath:toRelativePath];
+    BOOL isSuccess = [self yn_copyItemAtPath:sourceFullPath fullPath:targetPath overwrite:overwrite error:error];
+    return isSuccess;
+    
+    
+}
+
+- (BOOL)yn_copyItemAtPath:(NSString *)sourceFullPath
+              fullPath:(nullable NSString *)fullPath
+             overwrite:(BOOL)overwrite
+                    error:(NSError *__autoreleasing *)error {
+    //获得目标文件的上级目录
+    if (!fullPath.length) {
+        return false;
+    }
+    NSString *toDirPath = [fullPath stringByDeletingLastPathComponent];
+    if (!toDirPath.length) {
+        return false;
+    }
+    BOOL isDirectory;
+    if (![self fileExistsAtPath:toDirPath isDirectory:&isDirectory]) {
+        // 创建复制路径
+        if (![self createFolderFullPath:toDirPath clearIfNeeded:YES error:error]) {
+            return NO;
+        }
+    }
+    
+    // 如果覆盖，那么先删掉原文件
+    if (overwrite) {
+        if ([self fileExistsAtPath:fullPath isDirectory:&isDirectory]) {
+            [self removeItemAtPath:fullPath error:error];
+        }
+    }
+    // 复制文件，如果不覆盖且文件已存在则会复制失败
+    return [[NSFileManager defaultManager] copyItemAtPath:sourceFullPath toPath:fullPath error:error];
+}
 
 #pragma mark - getter & setter
 - (nonnull NSFileManager *)fileManager {
@@ -257,6 +319,15 @@
     }
     return _fileManager;
 }
+
+- (dispatch_queue_t)fileReadWriteQueue {
+    return _rw_file_queue;
+}
+
+- (dispatch_queue_t)fileOperationQueue {
+    return _file_option_queue;
+}
+
 
 #pragma mark - private function
 

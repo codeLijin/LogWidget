@@ -26,9 +26,9 @@
 }
 
 + (instancetype)modelWithYNPath:(DOCUMENT_PATH)yn_PATH
-                yn_relativePath:(nullable NSString *)yn_relativePath
-                    yn_fileName:(nullable NSString *)yn_fileName
-                    isDirectory:(BOOL)isDirectory {
+                                yn_relativePath:(nullable NSString *)yn_relativePath
+                                     yn_fileName:(nullable NSString *)yn_fileName
+                                       isDirectory:(BOOL)isDirectory {
     if (yn_PATH > DOCUMENT_PATH_CACHE || yn_PATH < DOCUMENT_PATH_HOME) {
         return [[YNPathModel alloc] init];
     }
@@ -42,14 +42,15 @@
         _directory = isDirectory;
         _yn_PATH = DOCUMENT_PATH_ERROR;
         [self _oringinPathMakeProperties];
+//        [self _create];
     }
     return self;
 }
 
 - (instancetype)initWithYNPath:(DOCUMENT_PATH)yn_PATH
-               yn_relativePath:(NSString *)yn_relativePath
-                   yn_fileName:(NSString *)yn_fileName
-                   isDirectory:(BOOL)isDirectory {
+                          yn_relativePath:(NSString *)yn_relativePath
+                               yn_fileName:(NSString *)yn_fileName
+                                 isDirectory:(BOOL)isDirectory {
     self = [super init];
     if (self) {
         _yn_PATH = yn_PATH;
@@ -57,6 +58,7 @@
         _yn_fileName = yn_fileName;
         _directory = isDirectory;
         [self _ynPathMakeProperties];
+//        [self _create];
     }
     return self;
 }
@@ -112,6 +114,59 @@
     _relativePath = [_oringinPath stringByAbbreviatingWithTildeInPath];
     _pathExtension = [_oringinPath pathExtension];
     _stringByDeletingPathExtension = [_oringinPath stringByDeletingPathExtension];
+}
+
+
+#pragma mark - public
+- (BOOL)createClearIfNeeded:(BOOL)destroyIfNeeded {
+    if (self.yn_PATH < DOCUMENT_PATH_ERROR && self.yn_PATH >= DOCUMENT_PATH_HOME) {
+        if (self.isDirectory) {
+            return [YNLogFileManager createFolder:self.yn_relativePath inPath:self.yn_PATH clearIfNeeded:destroyIfNeeded];
+        } else {
+            return [YNLogFileManager createFile:self.yn_fileName relativePath:self.yn_relativePath inPath:self.yn_PATH overwrite:destroyIfNeeded baseData:nil];
+        }
+    }
+    return false;
+}
+
+- (void)yn_write:(nonnull NSObject *)content overwrite:(BOOL)overwrite completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion {
+    if (!self.isDirectory) {
+        __weak typeof(self) weakSelf = self;
+        dispatch_async([YNLogFileManager fileReadWriteQueue], ^{
+            __strong typeof(self) strongSelf = weakSelf;
+            NSError *error;
+            BOOL ret = [YNLogFileManager writeFile:strongSelf.yn_fileName relativePath:strongSelf.yn_relativePath inPath:strongSelf.yn_PATH content:content append:!overwrite error:&error];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(ret, error);
+            });
+        });
+    } else {
+        completion(NO, nil);
+    }
+}
+
+- (void)yn_moveToYN_Path:(DOCUMENT_PATH)yn_PATH
+                    toRelativePath:(NSString *)yn_relativePath
+                            overwrite:(BOOL)overwrite
+                         completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion {
+    NSString *path = [YNLogFileManager getFullPathBy:yn_PATH relativePath:yn_relativePath];
+    if (!path.length) {
+        completion(NO, [NSError errorWithDomain:@"wrong target file" code:102 userInfo:nil]);
+    } else {
+        [self yn_moveToFullPath:path overwrite:overwrite completion:completion];
+    }
+}
+
+- (void)yn_moveToFullPath:(NSString *)fullPath overwrite:(BOOL)overwrite completion:(void (^)(BOOL result, NSError *_Nullable __autoreleasing error))completion {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async([YNLogFileManager fileOperationQueue], ^{
+        __strong typeof(self) strongSelf = weakSelf;
+        NSError *error;
+        BOOL result = [YNLogFileManager moveItemAtPath:strongSelf.oringinPath fullPath:fullPath overwrite:overwrite error:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(result, error);
+        });
+    });
 }
 
 #pragma mark - Setter

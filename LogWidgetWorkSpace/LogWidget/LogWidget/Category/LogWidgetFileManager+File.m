@@ -45,17 +45,6 @@
     }
 }
 
-
-/**
- 文件所在文件夹路径
-
- @param fullPath 文件完整路径
- @return 文件夹路径
- */
-- (NSString *)directoryAtPath:(NSString *)fullPath {
-    return [fullPath stringByDeletingLastPathComponent];
-}
-
 /**
  创建文件
 

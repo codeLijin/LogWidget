@@ -75,11 +75,62 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)removeItemAtPath:(NSString *_Nonnull)path
                    error:(NSError *__autoreleasing *_Nullable)error;
+
+/**
+ 移动文件(夹)
+ 
+ @param sourceFullPath 源完全路径
+ @param toPath 目标主目录
+ @param toRelativePath 目标相对路径
+ @param overwrite 是否覆盖
+ @param error 错误信息
+ @return 操作结果
+ */
+- (BOOL)moveItemAtPath:(NSString *)sourceFullPath
+                toPath:(DOCUMENT_PATH)toPath
+          toRelativePath:(nullable NSString *)toRelativePath
+             overwrite:(BOOL)overwrite
+                 error:(NSError *__autoreleasing *)error;
+
+- (BOOL)moveItemAtPath:(NSString *)sourceFullPath
+              fullPath:(nullable NSString *)fullPath
+             overwrite:(BOOL)overwrite
+                 error:(NSError *__autoreleasing *)error;
+
+/**
+ 复制文件(夹)
+ 
+ @param sourceFullPath 源完全路径
+ @param toPath 目标主目录
+ @param toRelativePath 目标相对路径
+ @param overwrite 是否覆盖
+ @param error 错误信息
+ */
+- (BOOL)yn_copyItemAtPath:(NSString *)sourceFullPath
+                   toPath:(DOCUMENT_PATH)toPath
+           toRelativePath:(nullable NSString *)toRelativePath
+                overwrite:(BOOL)overwrite
+                    error:(NSError *__autoreleasing *)error;
+
+- (BOOL)yn_copyItemAtPath:(NSString *)sourceFullPath
+                 fullPath:(nullable NSString *)fullPath
+                overwrite:(BOOL)overwrite
+                    error:(NSError *__autoreleasing *)error;
 #pragma mark - getter
 /**
  文件管理器
  */
 - (nonnull NSFileManager *)fileManager;
+
+/**
+ 读写文件队列
+ */
+- (dispatch_queue_t)fileReadWriteQueue;
+
+/**
+ 文件操作队列
+ */
+- (dispatch_queue_t)fileOperationQueue;
 @end
 
 NS_ASSUME_NONNULL_END

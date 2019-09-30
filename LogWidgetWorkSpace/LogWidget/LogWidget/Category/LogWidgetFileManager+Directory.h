@@ -25,6 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
        clearIfNeeded:(clearDir)clearIfNeeded;
 
 /**
+ 创建文件夹
+ 
+ @param fullPath 文件夹完整路径
+ @param clearIfNeeded 如果存在是否重新创建
+ @param error 错误信息
+ @return 操作结果
+ */
+- (BOOL)createFolderFullPath:(nonnull NSString *)fullPath
+               clearIfNeeded:(clearDir)clearIfNeeded
+                       error:(NSError *__autoreleasing*)error;
+
+/**
  计算文件夹大小
 
  @param path 文件夹路径

@@ -27,13 +27,28 @@
     }
     NSError *error = nil;
     NSString *full_path = [self getFullPathBy:path relativePath:folder];
-    if (!full_path.length) {
+    BOOL result = [self createFolderFullPath:full_path clearIfNeeded:clearIfNeeded error:&error];
+    return result;
+}
+
+/**
+ 创建文件夹
+
+ @param fullPath 文件夹完整路径
+ @param clearIfNeeded 如果存在是否重新创建
+ @param error 错误信息
+ @return 操作结果
+ */
+- (BOOL)createFolderFullPath:(nonnull NSString *)fullPath
+                          clearIfNeeded:(clearDir)clearIfNeeded
+                                         error:(NSError *__autoreleasing*)error {
+    if (!fullPath.length) {
         return false;
     }
     // 是否为目录
     BOOL isDir = false;
     // 是否存在
-    BOOL isDirExist = [self fileExistsAtPath:full_path isDirectory:&isDir];
+    BOOL isDirExist = [self fileExistsAtPath:fullPath isDirectory:&isDir];
     if (isDirExist) {
         if (isDir) {
             NSLog(@"存在: 为文件夹");
@@ -41,7 +56,7 @@
                 // 不需销毁, 直接返回
                 return true;
             }
-            BOOL isRemove = [self removeItemAtPath:full_path error:&error];
+            BOOL isRemove = [self removeItemAtPath:fullPath error:error];
             NSLog(@"%@", isRemove?@"删除成功" : @"删除失败");
             if (!isRemove) {        // 删除旧文件失败, 不影响文件操作, 返回true
                 return true;
@@ -51,7 +66,7 @@
         }
     }
     NSLog(@"不存在, 创建");
-    return [self fileManager:self.fileManager createFolder:full_path intermediateDirectories:YES error:&error];
+    return [self fileManager:self.fileManager createFolder:fullPath intermediateDirectories:YES error:error];
 }
 
 /**
